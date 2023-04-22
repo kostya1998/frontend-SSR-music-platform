@@ -1,6 +1,6 @@
 # Frontend music-platform
 
-This project is a front-end music platform application implemented on the Next.js framework, using typescript and Redux. The application backend can be downloaded from the link https://github.com/kostya1998/server-music-platform. The application itself has an interface for interacting with audio tracks (creating, playing, deleting, adding to an album, searching, commenting ...)
+This project is a front-end music platform application implemented on the Next.js framework, using typescript and Redux. The application backend can be downloaded from the link https://github.com/kostya1998/music-app-server. The application itself has an interface for interacting with audio tracks (creating, playing, deleting, adding to an album, searching, commenting ...)
 
 ## Getting Started
 
