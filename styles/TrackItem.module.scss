@@ -1,0 +1,25 @@
+.track {
+  color: white;
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.Img {
+  width: 70px;
+  height: 70px;
+}
+.ActiveTrue {
+  background-color: darkgray;
+}
+.ActiveFalse {
+  background-color: #3c4043;
+}
+
+.artist {
+  font-size: 12;
+  color: gray;
+}
+.delete {
+  margin-left: auto;
+}
