@@ -33,7 +33,7 @@ export default function Index() {
     );
     }
   return (
-    <div style={{backgroundColor:'#3c4043'}}>
+      <div >
 
     <Layout title={'Список Альбомов  - музыкальная платформа'}>
       <Grid container justifyContent="center">

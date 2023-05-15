@@ -6,6 +6,8 @@ import { useState } from "react";
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useInput } from "@/hooks/useInput";
+import {server} from '@/API/server'
+
 
 interface TrackPageProps {
   serverTrack: ITrack | null;
@@ -32,7 +34,7 @@ export default function TrackPage({
   const addComment = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/tracks/comments",
+        `${server}/tracks/comments`,
         {
           username: username.value,
           text: text.value,
@@ -64,7 +66,7 @@ export default function TrackPage({
     <div style={{ margin: "20px 0", padding:20, backgroundColor:'white', borderRadius:20}}>
       <Grid container >
         <img
-          src={"http://localhost:5000/" + track.picture}
+          src={server +'/'+ track.picture}
           style={{ width: 200, height: 200 }}
         />
         <div style={{ marginLeft: "30px" }}>
@@ -120,7 +122,7 @@ export const getServerSideProps: GetServerSideProps<TrackPageProps> = async ({
     };
   }
   try {
-    const response = await axios.get(`http://localhost:5000/tracks/${id}`);
+    const response = await axios.get(`${server}/tracks/${id}`);
     const serverTrack = response.data;
 
     return {

@@ -11,6 +11,7 @@ import { fetchTracks } from "../Store/action-creators/track";
 import { useDispatch } from "react-redux";
 import { NextThunkDispatch } from "../Store";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import {server} from '@/API/server'
 
 
 interface TrackItemProps {
@@ -51,7 +52,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isAlbum }) => {
   ) => {
     event.stopPropagation();
     try {
-      await axios.put(`http://localhost:5000/albums/${isAlbum}/${trackId}`);
+      await axios.put(`${server}/albums/${isAlbum}/${trackId}`);
       router.push("/albums");
     } catch (e) {
       console.log(e);
@@ -67,7 +68,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isAlbum }) => {
     const result = window.confirm(`Вы уверены, что хотите выполнить это действие?`);
 if (result) {
   try {
-    await axios.delete("http://localhost:5000/tracks/" + id);
+    await axios.delete(`${server}/tracks/` + id);
     await dispatch(fetchTracks());
   } catch (error) {
     console.log("ошибка");
@@ -118,7 +119,7 @@ if (result) {
       </div>
       <img
         className={styles.Img}
-        src={"http://localhost:5000/" + track.picture}
+        src={server +'/'+ track.picture}
       />
       <Grid
         container

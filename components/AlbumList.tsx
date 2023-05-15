@@ -11,6 +11,8 @@ import axios from "axios";
 import { fetchAlbums } from "../Store/action-creators/album";
 import { useDispatch } from "react-redux";
 
+import {server} from '@/API/server'
+
 interface AlbumListProps {
   albums: IAlbum[];
 }
@@ -37,7 +39,7 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
   
   const handleClick = async (albumId: string) => {
     try {
-      const resp = await axios.put(`http://localhost:5000/tracks/${trackId}/${albumId}`);
+      const resp = await axios.put(`${server}/tracks/${trackId}/${albumId}`);
       router.push("/tracks");
     } catch (e) {
       console.log(e);
@@ -57,7 +59,7 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
   ) => {
     event.stopPropagation();
     try {
-      const response = await axios.delete("http://localhost:5000/albums/" + id);
+      const response = await axios.delete(`${server}/albums/` + id);
        await dispatch(fetchAlbums())
     } catch (error) {
       console.log("ошибка");
@@ -75,7 +77,7 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
             style={{ margin: 10 }}
           >
             <img
-              src={"http://localhost:5000/" + album.picture}
+              src={server +'/'+ album.picture}
               alt={album.name}
               loading="lazy"
             />
@@ -106,7 +108,7 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
             style={{ margin: 10 }}
           >
             <img
-              src={"http://localhost:5000/" + album.picture}
+              src={server +'/'+ album.picture}
               alt={album.name}
               loading="lazy"
               style={{

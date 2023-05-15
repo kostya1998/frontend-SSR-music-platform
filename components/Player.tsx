@@ -7,6 +7,8 @@ import { Pause, PlayArrow, VolumeUp } from "@mui/icons-material";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import styles from "../styles/Player.module.scss";
+import {server} from '@/API/server'
+
 
 let audio: any;
 
@@ -26,9 +28,9 @@ const Player = () => {
 
   const setAudio = () => {
     switch (true) {
-      case active!==null && audio.src !== "http://localhost:5000/" + active.audio:
+      case active!==null && audio.src !== server +'/'+ active.audio:
     
-          audio.src =  "http://localhost:5000/" + active.audio;
+          audio.src =  server +'/'+ active.audio;
           audio.volume =  volume / 100;
           audio.onloadedmetadata = () => { setDuration(Math.ceil(audio.duration))};
           audio.ontimeupdate = () => { 

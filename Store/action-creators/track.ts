@@ -1,11 +1,13 @@
 import { TrackAction, TrackActionTypes } from "@/types/track";
 import axios from "axios";
 import { Dispatch } from "redux";
+import {server} from '@/API/server'
+
 
 export const fetchTracks = () => {
   return async (dispatch: Dispatch<TrackAction>) => {
     try {
-      const response = await axios.get("http://localhost:5000/tracks");
+      const response = await axios.get(`${server}/tracks`);
       dispatch({ type: TrackActionTypes.FETCH_TRACKS, payload: response.data });
     } catch (e) {
       dispatch({
@@ -19,7 +21,7 @@ export const fetchTracks = () => {
 export const searchFetchTracks = (query:string) => {
   return async (dispatch: Dispatch<TrackAction>) => {
     try {
-      const response = await axios.get("http://localhost:5000/tracks/search?query=" + query);
+      const response = await axios.get(`${server}/tracks/search?query=` + query);
       dispatch({ type: TrackActionTypes.FETCH_TRACKS, payload: response.data });
     } catch (e) {
       dispatch({
@@ -32,7 +34,7 @@ export const searchFetchTracks = (query:string) => {
 export const albumFetchTracks = (id:string) => {
   return async (dispatch: Dispatch<TrackAction>) => {
     try {
-      const response = await axios.get("http://localhost:5000/albums/"+id);
+      const response = await axios.get(`${server}/albums/`+id);
       const album = response.data
 
       dispatch({ type: TrackActionTypes.FETCH_TRACKS, payload: album.tracks });

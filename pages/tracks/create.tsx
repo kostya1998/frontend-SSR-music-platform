@@ -6,6 +6,8 @@ import { Grid, Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import {server} from '@/API/server'
+
 
 let initPicture: any | null;
 let initAudio: any | null;
@@ -36,7 +38,7 @@ const Create = () => {
       formData.append("picture", picture);
       formData.append("audio", audio);
       axios
-        .post("http://localhost:5000/tracks", formData)
+        .post(`${server}/tracks`, formData)
         .then((resp) => router.push("/tracks"))
         .catch((e) => console.log(e));
     }

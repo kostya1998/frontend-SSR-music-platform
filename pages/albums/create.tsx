@@ -6,6 +6,7 @@ import { Grid, Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import {server} from '@/API/server'
 
 let initPicture: any | null;
 
@@ -29,7 +30,7 @@ const Create = () => {
       formData.append("artist", author.value);
       formData.append("picture", picture);
       axios
-        .post("http://localhost:5000/albums", formData)
+        .post(`${server}/albums`, formData)
         .then((resp) => router.push("/albums"))
         .catch((e) => console.log(e));
     }
@@ -94,7 +95,7 @@ const Create = () => {
           )}
         </div>
       </StepAlbumWrapper>
-      <Grid container justifyContent="space-between" style={{color:'white'}}>
+      <Grid container justifyContent="space-between" style={{color:'darkgray'}}>
         <Button disabled={backDissabled()} onClick={back}>
         Back
         </Button>

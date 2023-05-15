@@ -1,0 +1,1 @@
+export const server:string  = `https://kostia-music-server.onrender.com`
