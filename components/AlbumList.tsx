@@ -11,7 +11,8 @@ import axios from "axios";
 import { fetchAlbums } from "../Store/action-creators/album";
 import { useDispatch } from "react-redux";
 
-import {server} from '@/API/server'
+import { server } from "@/API/server";
+import { NextThunkDispatch } from "@/Store";
 
 interface AlbumListProps {
   albums: IAlbum[];
@@ -36,7 +37,6 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
     setHoveredIndex(null);
   };
 
-  
   const handleClick = async (albumId: string) => {
     try {
       const resp = await axios.put(`${server}/tracks/${trackId}/${albumId}`);
@@ -60,12 +60,11 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
     event.stopPropagation();
     try {
       const response = await axios.delete(`${server}/albums/` + id);
-       await dispatch(fetchAlbums())
+      await dispatch(fetchAlbums());
     } catch (error) {
       console.log("ошибка");
     }
   };
-
 
   if (!id) {
     return (
@@ -77,7 +76,7 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
             style={{ margin: 10 }}
           >
             <img
-              src={server +'/'+ album.picture}
+              src={server + "/" + album.picture}
               alt={album.name}
               loading="lazy"
             />
@@ -108,7 +107,7 @@ const AlbumList: React.FC<AlbumListProps> = ({ albums }) => {
             style={{ margin: 10 }}
           >
             <img
-              src={server +'/'+ album.picture}
+              src={server + "/" + album.picture}
               alt={album.name}
               loading="lazy"
               style={{

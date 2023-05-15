@@ -13,23 +13,23 @@ interface TrackPageProps {
   serverTrack: ITrack | null;
 }
 
+
+
+
 export default function TrackPage({
   pageProps,
 }: {
   pageProps: TrackPageProps;
 }) {
   const [track, setTrack] = useState<ITrack | null>(pageProps.serverTrack);
-
-  if (!track) {
-    return <div>Ошибка загрузки трека</div>;
-  }
-
-
   const username = useInput('');
 
   const text = useInput('');
 
   const router = useRouter();
+  if (!track) {
+    return <div>Ошибка загрузки трека</div>;
+  }
 
   const addComment = async () => {
     try {

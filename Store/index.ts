@@ -9,7 +9,7 @@ const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
 
 export const makeStore = (context?: Context): Store<RootState> =>
   createStore(reducer, composedEnhancer);
-const store = makeStore();
+ export const store = makeStore();
 
 export type AppState = ReturnType<typeof store.getState>;
 
@@ -20,4 +20,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   AnyAction
 >;
 export type NextThunkDispatch = ThunkDispatch<RootState, void, AnyAction>;
-export default store;
