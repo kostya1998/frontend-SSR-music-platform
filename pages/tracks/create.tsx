@@ -6,8 +6,7 @@ import { Grid, Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import {server} from '@/API/server'
-
+import { server } from "@/API/server";
 
 let initPicture: any | null;
 let initAudio: any | null;
@@ -74,9 +73,15 @@ const Create = () => {
   return (
     <Layout>
       <StepWrapper activeStep={activeStep}>
-        <div style={{ paddingLeft: 20,backgroundColor:'darkgray' }}>
+        <div
+          style={{
+            paddingTop: 30,
+            paddingLeft: 50,
+            color: "rgb(43, 161, 152)",
+          }}
+        >
           {activeStep == 0 && (
-            <Grid container direction="column" style={{ padding: 20,color:'#3c4043' }}>
+            <Grid container direction="column" style={{ padding: 20 }}>
               <h1>Step1</h1>
               <TextField
                 {...name}
@@ -101,31 +106,45 @@ const Create = () => {
             <>
               <h1>Step 2</h1>
               <FileUpload setFile={setPicture} accept={"image/*"}>
-                <Button>Загрузить изображение</Button>
+                {picture ? (
+                  <h2>OK</h2>
+                ) : (
+                  <Button>
+                    <h2>Upload the Image</h2>
+                  </Button>
+                )}
               </FileUpload>
-              {picture ? (
-                <p>Изображение загружено</p>
-              ) : (
-                <p>Загрузите изображение</p>
-              )}
             </>
           )}
           {activeStep == 2 && (
             <>
               <h1>Step 3</h1>
               <FileUpload setFile={setAudio} accept={"audio/*"}>
-                <Button>Загрузить аудио</Button>
+                {audio ? (
+                  <h2>OK</h2>
+                ) : (
+                  <Button>
+                    <h2> Upload Audio</h2>
+                  </Button>
+                )}
               </FileUpload>
-              {audio ? <p>Аудио загружено</p> : <p>Загрузите аудио</p>}
             </>
           )}
         </div>
       </StepWrapper>
-      <Grid container justifyContent="space-between" style={{color:'white'}}>
-        <Button disabled={backDissabled()} onClick={back}>
-        Back
+      <Grid container justifyContent="space-between">
+        <Button
+          sx={{ color: "white" }}
+          disabled={backDissabled()}
+          onClick={back}
+        >
+          Back
         </Button>
-        <Button disabled={nextDissabled()} onClick={next}>
+        <Button
+          sx={{ color: "white" }}
+          disabled={nextDissabled()}
+          onClick={next}
+        >
           Next
         </Button>
       </Grid>

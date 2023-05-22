@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useRef,
-  useMemo,
-  useCallback,
-  useState,
-} from "react";
+import React, { useCallback, useEffect } from "react";
 import { useActions } from "@/hooks/useActions";
 import useTypedSelector from "@/hooks/useTypedSelector";
 import TrackProgress from "./TrackProgress";
@@ -32,7 +26,6 @@ const Player = () => {
   );
 
   const { tracks } = useTypedSelector((state) => state.track);
-
   useEffect(() => {
     audio ? setAudio() : (audio = new Audio());
   }, [active]);

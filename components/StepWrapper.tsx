@@ -12,11 +12,10 @@ const steps: String[] = [
 ];
 const StepWrapper: React.FC<StepWrapperProps> = ({ activeStep, children }) => {
   return (
-    
     <Container>
       <Stepper activeStep={activeStep}>
         {steps.map((step, index) => (
-          <Step sx={{backgroundColor:'darkgray',borderRadius:5}} key={index} completed={activeStep > index}>
+          <Step key={index} completed={activeStep > index}>
             <StepLabel>{step}</StepLabel>
           </Step>
         ))}
@@ -26,10 +25,9 @@ const StepWrapper: React.FC<StepWrapperProps> = ({ activeStep, children }) => {
         justifyContent="center"
         style={{ margin: "70 ", height: 270 }}
       >
-        <Card style={{ width: 600, marginTop: 30,backgroundColor: 'darkgray' }}>{children}</Card>
+        <Card style={{ width: 600, marginTop: 30 }}>{children}</Card>
       </Grid>
     </Container>
-    
   );
 };
 export default StepWrapper;

@@ -53,7 +53,7 @@ const Index: NextPage = () => {
     } else {
       isMounted.current = true;
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   if (error) {
     return (

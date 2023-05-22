@@ -1,5 +1,5 @@
 import { ITrack } from "@/types/track";
-import {  Pause, PlayArrow } from "@mui/icons-material";
+import { Pause, PlayArrow } from "@mui/icons-material";
 import { Card, Grid, IconButton, Button } from "@mui/material";
 import { useRouter } from "next/router";
 import styles from "../styles/TrackItem.module.scss";
@@ -11,8 +11,7 @@ import { fetchTracks } from "../Store/action-creators/track";
 import { useDispatch } from "react-redux";
 import { NextThunkDispatch } from "../Store";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import {server} from '@/API/server'
-
+import { server } from "@/API/server";
 
 interface TrackItemProps {
   track: ITrack;
@@ -36,7 +35,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isAlbum }) => {
     } else {
       setIsActive(false);
     }
-  }, [active]);
+  }, [active, track._id]);
 
   const addTrack = (id: string, event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -65,15 +64,17 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, isAlbum }) => {
   ) => {
     event.stopPropagation();
 
-    const result = window.confirm(`Вы уверены, что хотите выполнить это действие?`);
-if (result) {
-  try {
-    await axios.delete(`${server}/tracks/` + id);
-    await dispatch(fetchTracks());
-  } catch (error) {
-    console.log("ошибка");
-  }
-}
+    const result = window.confirm(
+      `Вы уверены, что хотите выполнить это действие?`
+    );
+    if (result) {
+      try {
+        await axios.delete(`${server}/tracks/` + id);
+        await dispatch(fetchTracks());
+      } catch (error) {
+        console.log("ошибка");
+      }
+    }
   };
 
   return (
@@ -117,10 +118,7 @@ if (result) {
           </IconButton>
         )}
       </div>
-      <img
-        className={styles.Img}
-        src={server +'/'+ track.picture}
-      />
+      <img className={styles.Img} src={server + "/" + track.picture} />
       <Grid
         container
         direction="column"
@@ -131,12 +129,12 @@ if (result) {
       </Grid>
       {isAlbum ? (
         <Button onClick={(event) => removeTrack(track._id, event)}>
-          remove from album 
+          remove from album
         </Button>
       ) : (
         <>
           <Button onClick={(event) => addTrack(track._id, event)}>
-            add to Album 
+            add to Album
           </Button>
           <IconButton
             onClick={(event) => deleteTrack(track._id, event)}
